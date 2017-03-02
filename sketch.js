@@ -2,6 +2,7 @@
 
 var w,h;
 var data;
+var seam = 10;
 $(document).ready(function() {
 
   w = $(window).width();
@@ -15,7 +16,8 @@ $(document).ready(function() {
        data = $.csv.toArrays(result);
       //  console.log(data[0]);
       //console.log(data.length - 1);
-      drawShapes(data,14,80,80,true);
+      //width, height, curve
+      drawShapes(data,14,70,70,true);
     }
   });
 
@@ -83,21 +85,26 @@ var r  = new Rune({
     // var step = 10; //input width
     // var ratio = 20; //input curve
     // var base = 30; //input height
+
+
     var patternPath = r.path(x, y)
       .stroke(0)
       .fill(false)
       .strokeWidth(2);
+
+      patternPath.lineTo(0,seam);
 
     for (var j = 1; j < 12; j++) {
       var temp = data[i][j];
       //console.log(data[0][j]);
       //console.log(temp);
       //patternPath.lineTo((step * j),(data[i][j] * ratio+base))
-      patternPath.curveTo((step * j), (data[i][j] * ratio + base), (step * j + step * (j + 1)) / 2, ((data[i][j] * ratio + base) + (data[i][j + 1] * ratio + base)) / 2)
+      patternPath.curveTo((step * j), (data[i][j] * ratio + base+seam), (step * j + step * (j + 1)) / 2, ((data[i][j] * ratio + base+seam) + (data[i][j + 1] * ratio + base+seam)) / 2)
 
     }
-    patternPath.curveTo((step * 12), (data[i][12] * ratio + base), (step * 12 + step * 13) / 2, ((data[i][12] * ratio + base) + 0) / 2)
-    patternPath.lineTo((step * 13), 0)
+    patternPath.curveTo((step * 12), (data[i][12] * ratio + base+seam), (step * 12 + step * 13) / 2, ((data[i][12] * ratio + base+seam) + 0) / 2)
+    patternPath.lineTo((step * 13), 5)
+    patternPath.lineTo((step * 13),0)
     patternPath.closePath();
 
   }
