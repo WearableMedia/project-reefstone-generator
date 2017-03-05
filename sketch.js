@@ -17,7 +17,7 @@ $(document).ready(function() {
       //  console.log(data[0]);
       //console.log(data.length - 1);
       //width, height, curve
-      drawShapes(data,14,70,70,true);
+      drawShapes(data,20,25,50,true);
     }
   });
 
@@ -71,20 +71,26 @@ function drawShapes(data,step,base,ratio,showText){
 var r  = new Rune({
      container: "#canvas",
      width: (w - 30),
-     height: 4000,
+     height: 8000,
      debug: false,
    });
-
-  for (var i = 1; i < (data.length - 1); i++) {
+console.log(data.length-97);
+  for (var i = 97; i < (data.length - 1); i++) {
     var year = data[i][0];
+    console.log(year);
 
     var num = Math.round((w-100)/step/13);
-    var x = 20 + step*14 * (i % num);
-    var y = 100 + (base+ratio) * Math.round(i / num);
+  //  var x = 20 + step*14 * (i % num);
+  //  var y = 100 + (base+ratio+20) * Math.round(i / num);
+
+  var x= 20;
+  var y = 100 + (base+ratio+20) *(i-97);
 
     // var step = 10; //input width
     // var ratio = 20; //input curve
     // var base = 30; //input height
+
+    var myText = r.text(year,x,y);
 
 
     var patternPath = r.path(x, y)
