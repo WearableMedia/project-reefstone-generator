@@ -84,7 +84,7 @@ console.log(data.length-97);
   //  var y = 100 + (base+ratio+20) * Math.round(i / num);
 
   var x= 20;
-  var y = 100 + (base+ratio+20) *(i-97);
+  var y = 100 + (base+ratio+30) *(i-97);
 
     // var step = 10; //input width
     // var ratio = 20; //input curve
@@ -98,18 +98,18 @@ console.log(data.length-97);
       .fill(false)
       .strokeWidth(2);
 
-      patternPath.lineTo(0,seam);
+      patternPath.lineTo(0,-seam);
 
     for (var j = 1; j < 12; j++) {
       var temp = data[i][j];
       //console.log(data[0][j]);
       //console.log(temp);
       //patternPath.lineTo((step * j),(data[i][j] * ratio+base))
-      patternPath.curveTo((step * j), (data[i][j] * ratio + base+seam), (step * j + step * (j + 1)) / 2, ((data[i][j] * ratio + base+seam) + (data[i][j + 1] * ratio + base+seam)) / 2)
+      patternPath.curveTo((step * j), -(data[i][j] * ratio + base+seam), (step * j + step * (j + 1)) / 2, -((data[i][j] * ratio + base+seam) + (data[i][j + 1] * ratio + base+seam)) / 2)
 
     }
-    patternPath.curveTo((step * 12), (data[i][12] * ratio + base+seam), (step * 12 + step * 13) / 2, ((data[i][12] * ratio + base+seam) + 0) / 2)
-    patternPath.lineTo((step * 13), 5)
+    patternPath.curveTo((step * 12), -(data[i][12] * ratio + base+seam), (step * 12 + step * 13) / 2, -((data[i][12] * ratio + base+seam) + 0) / 2)
+    patternPath.lineTo((step * 13), -seam)
     patternPath.lineTo((step * 13),0)
     patternPath.closePath();
 
